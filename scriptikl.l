@@ -4,16 +4,16 @@
 %}
 %%
 
-[0-9]+  {
-          yylval = atoi(yytext);
-          return INTEGER;
-        }
+[0-9]+    {
+            yylval = atoi(yytext);
+            return INTEGER;
+          }
 
-[-+\n]  return *yytext;
+[-+x|\n]  return *yytext;
 
-[ \t]   ; /* skip whitespace */
+[ \t]     ; /* skip whitespace */
 
-.       yyerror("invalid character");
+.         yyerror("invalid character");
 
 %%
 

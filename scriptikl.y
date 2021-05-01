@@ -1,3 +1,5 @@
+%left '+' '-'
+%left 'x' '|'
 %token INTEGER
 
 %{
@@ -9,7 +11,7 @@
 %%
 
 program:
-  program expr '\n' { printf("%d\n", $2); }
+  program expr '\n'   { printf("%d\n", $2); }
   |
   ;
 
@@ -17,6 +19,8 @@ expr:
   INTEGER           { $$ = $1; }
   | expr '+' expr   { $$ = $1 + $3; }
   | expr '-' expr   { $$ = $1 - $3; }
+  | expr 'x' expr   { $$ = $1 * $3; }
+  | expr '|' expr   { $$ = $1 / $3; }
   ;
 
 %%
